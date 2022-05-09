@@ -227,6 +227,7 @@ local plugins = {
          require "plugins.configs.telescope"
       end,
    },
+
 }
 
 plugins = require("core.utils").remove_default_plugins(plugins)
