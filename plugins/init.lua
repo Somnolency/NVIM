@@ -1,4 +1,5 @@
-return {
+local M = {}
+M = {
     -- LSP UI 美化
 --    ["tami5/lspsaga.nvim"] = {
 --     config = function()
@@ -21,12 +22,12 @@ return {
     --     end
     -- },
 
-    -- 键位绑定器
-    ["folke/which-key.nvim"] = {
-        config = function()
-            require("custom.plugins.configs.which-key")
-        end
-    },
+    -- 键位绑定器 默认安装了
+    -- ["folke/which-key.nvim"] = {
+    --     config = function()
+    --         require("custom.plugins.configs.which-key")
+    --     end
+    -- },
 
     -- -- 精美弹窗
     -- ["rcarriga/nvim-notify"] = {
@@ -50,16 +51,47 @@ return {
     -- },
 
     -- 自动保存(可能与插件实时生效有干扰)
-    ["Pocco81/AutoSave.nvim"] = {
-        config = function()
-            require("custom.plugins.configs.autosave")
-        end
+--     ["Pocco81/AutoSave.nvim"] = {
+--         config = function()
+--             require("custom.plugins.configs.autosave")
+--         end
+--     },
+
+--     ["jose-elias-alvarez/null-ls.nvim"] = {
+--         after = "nvim-lspconfig",
+--         config = function()
+--            require("custom.plugins.configs.null-ls").setup()
+--         end,
+--    },
+    -- Install plugin
+    ["Pocco81/TrueZen.nvim"] = {},
+
+    -- Override plugin definition options
+    ["goolord/alpha-nvim"] = {
+        disable = false,
+        cmd = "Alpha",
     },
 
-    ["jose-elias-alvarez/null-ls.nvim"] = {
-        after = "nvim-lspconfig",
-        config = function()
-           require("custom.plugins.configs.null-ls").setup()
+    -- Override plugin config
+    ["williamboman/mason.nvim"] = {
+        override_options = {
+            ensure_installed = { "html-lsp", "clangd" }
+        }
+    },
+    
+    -- Override plugin config if it has a module called
+    -- If you wish to call a module, which is 'cmp' in this case
+    ["hrsh7th/nvim-cmp"] = {
+        override_options = function()
+        local cmp = require "cmp"
+
+        return {
+            mapping = {
+            ["<C-d>"] = cmp.mapping.scroll_docs(-8),
+            },
+        }
         end,
-   },
+    },
 }
+
+return M
