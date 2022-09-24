@@ -1,38 +1,51 @@
-local null_ls = require "null-ls"
-local b = null_ls.builtins
+local present, null_ls = pcall(require, "null-ls")
 
-local sources = {
-
-   b.formatting.prettierd.with { filetypes = { "html", "markdown", "css" } },
-   b.formatting.deno_fmt,
-
-   -- Lua
-   b.formatting.stylua,
-   b.diagnostics.luacheck.with { extra_args = { "--global vim" } },
-
-   -- Shell
-   b.formatting.shfmt,
-   b.diagnostics.shellcheck.with { diagnostics_format = "#{m} [#{c}]" },
-
-   --C/C++
-   b.formatting.clang_format,
-   b.diagnostics.gccdiag
-}
-
-local M = {}
-
-M.setup = function()
-   null_ls.setup {
-      debug = true,
-      sources = sources,
-
-      -- format on save
-      on_attach = function(client)
-         if client.resolved_capabilities.document_formatting then
-            vim.cmd "autocmd BufWritePre <buffer> lua vim.lsp.buf.formatting_sync()"
-         end
-      end,
-   }
+if not present then
+  vim.notify("null-ls not found!")
+	return
 end
 
-return M
+-- https://github.com/jose-elias-alvarez/null-ls.nvim/tree/main/lua/null-ls/builtins/formatting
+local formatting = null_ls.builtins.formatting
+-- https://github.com/jose-elias-alvarez/null-ls.nvim/tree/main/lua/null-ls/builtins/diagnostics
+local diagnostics = null_ls.builtins.diagnostics
+
+local completion = null_ls.builtins.completion
+
+null_ls.setup({
+   
+	debug = true,
+	sources = {
+		-- formatting.autopep8, -- for python
+		formatting.stylua,     -- for lua
+      formatting.clang_format, -- for cpp
+    -- formatting.gofmt,       -- for golang
+    -- formatting.shfmt,       -- for shell
+      formatting.cmake_format,
+
+    -- diagnostics.flake8,
+      diagnostics.clang_check,
+      diagnostics.cmake_lint,
+
+      completion.spell,
+	},
+
+  -- you can reuse a shared lspconfig on_attach callback here
+  -- 下面这个应该是默认打开的，但是被我注释掉了
+--   on_attach = function(client)
+--       -- NOTE: 如果想要禁止某种语言在save时format，可以添加判定
+--       -- if client.name == "xxx" then
+--       --
+--       -- end
+--       -- auto format when save file
+--     if client.resolved_capabilities.document_formatting then
+--       vim.cmd([[
+--             augroup LspFormatting
+--             autocmd! * <buffer>
+--             autocmd BufWritePre <buffer> lua vim.lsp.buf.formatting_sync()
+--             augroup END
+--             ]])
+--     end
+--   end,
+})
+

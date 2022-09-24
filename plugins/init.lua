@@ -1,11 +1,11 @@
 local M = {}
 M = {
     -- LSP UI 美化
---    ["tami5/lspsaga.nvim"] = {
---     config = function()
---         require("custom.plugins.configs.lspsaga")
---     end
---     },
+   ["tami5/lspsaga.nvim"] = {
+    config = function()
+        require("custom.plugins.configs.lspsaga")
+    end
+    },
 
     -- 炫酷的状态栏插件
     -- ["windwp/windline.nvim"] = {
@@ -23,11 +23,12 @@ M = {
     -- },
 
     -- 键位绑定器 默认安装了
-    -- ["folke/which-key.nvim"] = {
-    --     config = function()
-    --         require("custom.plugins.configs.which-key")
-    --     end
-    -- },
+    ["folke/which-key.nvim"] = {
+        -- config = function()
+        --     require("custom.plugins.configs.which-key")
+        -- end
+        disable = false,
+    },
 
     -- -- 精美弹窗
     -- ["rcarriga/nvim-notify"] = {
@@ -43,12 +44,21 @@ M = {
     --     end
     -- },
 
+    -- Cmake集成到Neovim
+    ["nvim-lua/plenary.nvim"] = {},
+    ["Shatur/neovim-tasks"] = {
+        after = "nvim-lspconfig",
+        config = function()
+            require("custom.plugins.configs.neovim-tasks")
+        end,
+    },
+
     -- 搜索时显示条目
-    -- ["kevinhwang91/nvim-hlslens"] = {
-    --     config = function()
-    --         require("custom.plugins.configs.nvim-hlslens")
-    --     end
-    -- },
+    ["kevinhwang91/nvim-hlslens"] = {
+        config = function()
+            require("custom.plugins.configs.nvim-hlslens")
+        end
+    },
 
     -- 自动保存(可能与插件实时生效有干扰)
 --     ["Pocco81/AutoSave.nvim"] = {
@@ -56,13 +66,13 @@ M = {
 --             require("custom.plugins.configs.autosave")
 --         end
 --     },
-
---     ["jose-elias-alvarez/null-ls.nvim"] = {
---         after = "nvim-lspconfig",
---         config = function()
---            require("custom.plugins.configs.null-ls").setup()
---         end,
---    },
+    -- 插入lsp等提示信息
+    ["jose-elias-alvarez/null-ls.nvim"] = {
+        after = "nvim-lspconfig",
+        config = function()
+           require("custom.plugins.configs.null-ls").setup()
+        end,
+   },
     -- Install plugin
     ["Pocco81/TrueZen.nvim"] = {},
 
