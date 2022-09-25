@@ -82,7 +82,7 @@ M = {
 --     },
     -- 插入lsp等提示信息
     ["jose-elias-alvarez/null-ls.nvim"] = {
-        after = "nvim-lspconfig",
+        -- after = "nvim-lspconfig",
         config = function()
            require("custom.plugins.configs.null-ls")
         end,
@@ -109,6 +109,13 @@ M = {
             return {
                 mapping = {
                 ["<C-d>"] = cmp.mapping.scroll_docs(-8),
+                },
+                formatting = overrides.cmp.formatting,
+                window = {
+                    completion = {
+                      col_offset = -3,
+                      side_padding = 0,
+                    },
                 },
             }
         end,
