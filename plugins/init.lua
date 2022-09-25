@@ -102,10 +102,12 @@ M = {
     
     -- Override plugin config if it has a module called
     -- If you wish to call a module, which is 'cmp' in this case
+    -- 代码补全
+    ["hrsh7th/cmp-cmdline"] = { after = "cmp-path" },
+    ["onsails/lspkind.nvim"] = {},
     ["hrsh7th/nvim-cmp"] = {
         override_options = function()
             local cmp = require "cmp"
-
             return {
                 mapping = {
                 ["<C-d>"] = cmp.mapping.scroll_docs(-8),
@@ -116,6 +118,54 @@ M = {
                       col_offset = -3,
                       side_padding = 0,
                     },
+                },
+
+                cmp.setup.filetype('gitcommit', {
+                    sources = cmp.config.sources({
+                      { name = 'cmp_git' }, -- You can specify the `cmp_git` source if you were installed it.
+                    }, {
+                      { name = 'buffer' },
+                    })
+                  }),
+
+                -- 命令模式下输入 ':' 启用补全
+                cmp.setup.cmdline(':', {
+                    mapping = cmp.mapping.preset.cmdline(),
+                    sources = cmp.config.sources({
+                      { name = 'path' }
+                    }, {
+                      { name = 'cmdline' }
+                    })
+                }),
+
+                -- 命令模式下输入 '/' 启用补全
+                cmp.setup.cmdline('/', {
+                    mapping = cmp.mapping.preset.cmdline(),
+                    sources = {
+                        { name = 'buffer' }
+                    }
+                }),
+
+                -- 命令模式下输入 '?' 启用补全
+                cmp.setup.cmdline('?', {
+                    mapping = cmp.mapping.preset.cmdline(),
+                    sources = {
+                        { name = 'buffer' }
+                    }
+                }),
+
+                -- cmp 自动补全的排序
+                sorting = {
+                    comparators = {
+                        cmp.config.compare.offset,
+                        cmp.config.compare.exact,
+                        cmp.config.compare.score,
+                        cmp.config.compare.recently_used,
+                        cmp.config.compare.kind,
+                        cmp.config.compare.sort_text,
+                        cmp.config.compare.length,
+                        cmp.config.compare.order
+                    }
                 },
             }
         end,

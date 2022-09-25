@@ -33,18 +33,14 @@ capabilities.offsetEncoding = { "utf-16" }
 lspconfig["clangd"].setup {
     on_attach = on_attach,
     capabilities = capabilities,
-    cmd = {"clangd"},
+    cmd = {
+          "clangd",
+          "--background-index",
+          "--suggest-missing-includes",
+          "--clang-tidy",
+    },
     filetypes = { "c", "cpp", "objc", "objcpp" },
     single_file_support = true,
-    settings = {
-        diagnostics = {
-            globals = { "vim" },
-        },
-        workspace = {
-            maxPreload = 100000,
-            preloadFileSize = 10000,
-        },
-    }
 }
 
 -- -- cmake配置

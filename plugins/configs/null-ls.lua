@@ -23,14 +23,15 @@ null_ls.setup({
 
       -- for cpp
       formatting.clang_format, 
-      formatting.cmake_format,     
+      -- formatting.cmake_format,     
 
       -- 静态检查设置
-      diagnostics.clang_check,
+      -- diagnostics.clang_check,
       diagnostics.cmake_lint,
 
       -- 自动完成源设置
       completion.luasnip,
+      completion.spell,
 	},
 
   -- you can reuse a shared lspconfig on_attach callback here
