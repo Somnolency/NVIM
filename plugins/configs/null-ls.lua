@@ -16,18 +16,21 @@ null_ls.setup({
    
 	debug = true,
 	sources = {
-		-- formatting.autopep8, -- for python
-		formatting.stylua,     -- for lua
-      formatting.clang_format, -- for cpp
-    -- formatting.gofmt,       -- for golang
-    -- formatting.shfmt,       -- for shell
-      formatting.cmake_format,
 
-    -- diagnostics.flake8,
+      -- 代码格式化设置
+      -- for lua
+		  formatting.stylua, 
+
+      -- for cpp
+      formatting.clang_format, 
+      formatting.cmake_format,     
+
+      -- 静态检查设置
       diagnostics.clang_check,
       diagnostics.cmake_lint,
 
-      completion.spell,
+      -- 自动完成源设置
+      completion.luasnip,
 	},
 
   -- you can reuse a shared lspconfig on_attach callback here

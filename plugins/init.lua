@@ -1,4 +1,5 @@
 local M = {}
+local overrides = require "custom.plugins.overrides"
 M = {
     -- LSP UI 美化
    ["tami5/lspsaga.nvim"] = {
@@ -53,6 +54,19 @@ M = {
         end,
     },
 
+    -- Lsp 相关设置
+    ["neovim/nvim-lspconfig"] = {
+        config = function()
+          require "plugins.configs.lspconfig"
+          require "custom.plugins.lspconfig"
+        end,
+    },
+
+    -- 提供代码高亮
+    ["nvim-treesitter/nvim-treesitter"] = {
+        override_options = overrides.treesitter,
+    },
+
     -- 搜索时显示条目
     ["kevinhwang91/nvim-hlslens"] = {
         config = function()
@@ -70,7 +84,7 @@ M = {
     ["jose-elias-alvarez/null-ls.nvim"] = {
         after = "nvim-lspconfig",
         config = function()
-           require("custom.plugins.configs.null-ls").setup()
+           require("custom.plugins.configs.null-ls")
         end,
    },
     -- Install plugin
@@ -79,27 +93,24 @@ M = {
     -- Override plugin definition options
     ["goolord/alpha-nvim"] = {
         disable = false,
-        cmd = "Alpha",
     },
 
     -- Override plugin config
     ["williamboman/mason.nvim"] = {
-        override_options = {
-            ensure_installed = { "html-lsp", "clangd" }
-        }
+        override_options = overrides.mason
     },
     
     -- Override plugin config if it has a module called
     -- If you wish to call a module, which is 'cmp' in this case
     ["hrsh7th/nvim-cmp"] = {
         override_options = function()
-        local cmp = require "cmp"
+            local cmp = require "cmp"
 
-        return {
-            mapping = {
-            ["<C-d>"] = cmp.mapping.scroll_docs(-8),
-            },
-        }
+            return {
+                mapping = {
+                ["<C-d>"] = cmp.mapping.scroll_docs(-8),
+                },
+            }
         end,
     },
 }
