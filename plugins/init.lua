@@ -62,7 +62,7 @@ M = {
         end,
     },
 
-    -- 提供代码高亮
+    -- 提供代码高亮, 缩进以及选择
     ["nvim-treesitter/nvim-treesitter"] = {
         override_options = overrides.treesitter,
     },
