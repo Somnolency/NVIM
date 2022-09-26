@@ -31,6 +31,7 @@ M.treesitter = {
   },
 }
 
+
 M.mason = {
   ensure_installed = {
     -- lua stuff
