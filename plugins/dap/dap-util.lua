@@ -66,10 +66,21 @@ if not prst then
     vim.notify("custom not found!")
       return
 end
-  
+
+-- file exist?
+function M.exists(file)
+  local ok, err, code = os.rename(file, file)
+  if not ok then
+    if code == 13 then
+      -- Permission denied, but it exists
+      return true
+    end
+  end
+  return ok, err
+end
 
 function M.store_breakpoints()
-  if not utils.exists(bp_base_dir) then
+  if not M.exists(bp_base_dir) then
     os.execute("mkdir -p " .. bp_base_dir)
   end
 
@@ -121,6 +132,14 @@ function M.load_breakpoints()
       end
     end
   end
+end
+
+
+M.non_empty = function(object)
+  if type(object) == "table" then
+    return next(object) ~= nil
+  end
+  return object and #object > 0
 end
 
 return M
