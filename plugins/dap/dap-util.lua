@@ -61,11 +61,6 @@ end
 -- persist breakpoint
 local bp_base_dir = os.getenv("HOME") .. "/.cache/dap-breakpoint/"
 local breakpoints = require('dap.breakpoints')
-local prst, utils = pcall(require,"custom")
-if not prst then
-    vim.notify("custom not found!")
-      return
-end
 
 -- file exist?
 function M.exists(file)
