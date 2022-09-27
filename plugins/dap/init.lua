@@ -2,7 +2,7 @@ local M = {}
 
 
 local function configure()
-  require "dap"
+  require("dap")
 
   local dap_breakpoint = {
     error = {
@@ -76,7 +76,7 @@ local function configure_debuggers()
   -- config per launage
 
   require("custom.plugins.dap.dap-cpp")
-  require("custom.plugins.dap.dap-lua")
+--   require("custom.plugins.dap.dap-lua")
 
 end
 

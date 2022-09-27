@@ -170,6 +170,35 @@ M = {
             }
         end,
     },
+
+
+    -- Debugger 插件
+    ["ravenxrz/DAPInstall.nvim"] = {},
+    ["mfussenegger/nvim-dap"] = {
+        after = "nvim-cmp",
+        config = function()
+            require("custom.plugins.dap").setup()
+         end,
+    },
+    ["theHamsta/nvim-dap-virtual-text"] = {
+        setup = function()
+            require("custom.plugins.dap.dap-virtual-text").setup()
+         end,
+    },
+    ["rcarriga/nvim-dap-ui"] = {
+        config = function()
+            require("custom.plugins.dap.dap-ui")
+         end,
+    },
+    ["jbyuki/one-small-step-for-vimkind"] = {module = "osv",},
+    ["sakhnik/nvim-gdb"] = {
+        run = "./install.sh",
+        config = function()
+            require("custom.plugins.dap.nvim-gdb")
+         end,
+    },
+
+
 }
 
 
