@@ -3,8 +3,8 @@ local dap = require 'dap'
 
 -- refresh config
 M.reload_continue = function()
-  package.loaded['custom.plugins.dap.dap-config'] = nil
-  require('custom.plugins.dap.dap-config').setup()
+  package.loaded['custom.plugins.dap'] = nil
+  require('custom.plugins.dap').setup()
   dap.continue()
 end
 
