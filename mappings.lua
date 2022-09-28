@@ -72,4 +72,19 @@ M.Lspsage = {
   }
 }
 
+M.Dap = {
+  n = {
+    ["<leader>db"] = {"<cmd>lua require'dap'.toggle_breakpoint(); require'custom.plugins.dap.dap-util'.store_breakpoints(true)<cr>","打断点"},
+    ["<leader>dB"] = {"<cmd>lua require'dap'.set_breakpoint(vim.fn.input '[Condition] > ')<cr>","特殊断点"},
+    ["<F9>"] = {"<cmd>lua require'dap'.run_last()<cr>","上一步"},
+    ["<F10>"] = {'<cmd>lua require"custom.plugins.dap.dap-util".reload_continue()<CR>',"重新运行"},
+    ["<F4>"] = {"<cmd>lua require'dap'.terminate()<cr>","dap terminate"},
+    ["<F5>"] = {"<cmd>lua require'dap'.continue()<cr>","dap continue"},
+    ["<F6>"] = {"<cmd>lua require'dap'.step_over()<cr>","步入"},
+    ["<F7>"] = {"<cmd>lua require'dap'.step_into()<cr>","dap step into"},
+    ["<F8>"] = {"<cmd>lua require'dap'.step_out()<cr>","步出"},
+    ["K"] = {"<cmd>lua require'dapui'.eval()<cr>","dapui eval"},
+  },
+}
+
 return M
