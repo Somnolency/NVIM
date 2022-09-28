@@ -1,8 +1,11 @@
 local M = {}
-
+local dap, dapui = require "dap", require "dapui"
 
 local function configure()
-  require("dap")
+  local dap_install = require "dap-install"
+      dap_install.setup {
+      installation_path = vim.fn.stdpath "data" .. "/dapinstall/",
+  }
 
   local dap_breakpoint = {
     error = {
@@ -35,8 +38,6 @@ local function configure_exts()
     commented = true,
   }
   
-  local dap, dapui = require "dap", require "dapui"
-
   local debug_open = function()
     dapui.open()
     vim.api.nvim_command("DapVirtualTextEnable")
@@ -49,7 +50,6 @@ local function configure_exts()
     -- vim.api.nvim_command("bdelete! term:")   -- close debug temrinal
   end
 
-  dapui.setup {} -- use default
   dap.listeners.after.event_initialized["dapui_config"] = function()
     dapui.open()
   end
@@ -65,7 +65,6 @@ local function configure_exts()
 end
 
 local function configure_debuggers()
-  local dap = require "dap"
   -- TODO: wait dap-ui for fixing temrinal layout
   -- the "30" of "30vsplit: doesn't work
   dap.defaults.fallback.terminal_win_cmd = '30vsplit new' -- this will be overrided by dapui
