@@ -9,4 +9,4 @@ vim.opt.foldexpr = "nvim_treesitter#foldexpr()"
 -- https://stackoverflow.com/questions/8316139/how-to-set-the-default-to-unfolded-when-you-open-a-file
 vim.opt.foldlevel = 99
 
-require "custom.plugins.dap.dap-util"
+-- require "custom.plugins.dap.dap-util"
