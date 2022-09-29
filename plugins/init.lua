@@ -47,10 +47,10 @@ M = {
 
     -- Cmake集成到Neovim
     ["nvim-lua/plenary.nvim"] = {},
-    ["Shatur/neovim-tasks"] = {
-        after = "nvim-lspconfig",
+    ["Shatur/neovim-cmake"] = {
+        after = "nvim-dap",
         config = function()
-            require("custom.plugins.configs.neovim-tasks")
+            require("custom.plugins.configs.neovim-cmake")
         end,
     },
 
@@ -181,17 +181,22 @@ M = {
          end,
     },
     ["theHamsta/nvim-dap-virtual-text"] = {
-        setup = function()
-            require("custom.plugins.dap.dap-virtual-text").setup()
+        after = "nvim-dap",
+        config = function()
+            require("nvim-dap-virtual-text").setup {
+                require("custom.plugins.dap.dap-virtual-text").set
+            }
          end,
     },
     ["rcarriga/nvim-dap-ui"] = {
+        after = "nvim-dap",
         config = function()
             require("custom.plugins.dap.dap-ui")
          end,
     },
     ["jbyuki/one-small-step-for-vimkind"] = {module = "osv",},
     ["sakhnik/nvim-gdb"] = {
+        after = "nvim-dap-ui",
         run = "./install.sh",
         config = function()
             require("custom.plugins.dap.nvim-gdb")
