@@ -75,7 +75,7 @@ local function configure_debuggers()
   -- config per launage
 
   require("custom.plugins.dap.dap-cpp")
---   require("custom.plugins.dap.dap-lua")
+  require("custom.plugins.dap.dap-lua")
 
 end
 
