@@ -82,7 +82,7 @@ M = {
 --     },
     -- 插入lsp等提示信息
     ["jose-elias-alvarez/null-ls.nvim"] = {
-        -- after = "nvim-lspconfig",
+        after = "nvim-lspconfig",
         config = function()
            require("custom.plugins.configs.null-ls")
         end,
