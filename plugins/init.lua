@@ -203,6 +203,13 @@ M = {
          end,
     },
 
+    -- 函数签名
+    ["ray-x/lsp_signature.nvim"] = {
+        config = function()
+            require("custom.plugins.configs.lsp_signature")
+        end,
+    },
+
 
 }
 
