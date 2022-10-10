@@ -23,11 +23,11 @@ null_ls.setup({
 
       -- for cpp
       formatting.clang_format, 
-      -- formatting.cmake_format,     
+      formatting.cmake_format,     
 
-      -- 静态检查设置
+      -- 静态检查设置 这里就直接注释掉，因为lspconfig那边已经设置过了
       -- diagnostics.clang_check,
-      diagnostics.cmake_lint,
+      -- diagnostics.cmake_lint,
 
       -- 自动完成源设置
       completion.luasnip,
@@ -36,20 +36,21 @@ null_ls.setup({
 
   -- you can reuse a shared lspconfig on_attach callback here
   -- 下面这个应该是默认打开的，但是被我注释掉了
---   on_attach = function(client)
---       -- NOTE: 如果想要禁止某种语言在save时format，可以添加判定
---       -- if client.name == "xxx" then
---       --
---       -- end
---       -- auto format when save file
---     if client.resolved_capabilities.document_formatting then
---       vim.cmd([[
---             augroup LspFormatting
---             autocmd! * <buffer>
---             autocmd BufWritePre <buffer> lua vim.lsp.buf.formatting_sync()
---             augroup END
---             ]])
---     end
---   end,
+  -- 自动保存时进行格式化
+  on_attach = function(client)
+      -- NOTE: 如果想要禁止某种语言在save时format，可以添加判定
+      -- if client.name == "xxx" then
+      --
+      -- end
+      -- auto format when save file
+    if client.resolved_capabilities.document_formatting then
+      vim.cmd([[
+            augroup LspFormatting
+            autocmd! * <buffer>
+            autocmd BufWritePre <buffer> lua vim.lsp.buf.formatting_sync()
+            augroup END
+            ]])
+    end
+  end,
 })
 
