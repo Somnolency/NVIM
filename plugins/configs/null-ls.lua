@@ -29,14 +29,14 @@ null_ls.setup({
       -- diagnostics.clang_check,
       -- diagnostics.cmake_lint,
 
-      -- 自动完成源设置
-      completion.luasnip,
-      completion.spell,
+      -- 自动完成源设置 这里似乎与nvim-cmp冲突了
+      -- completion.luasnip,
+      -- completion.spell,
 	},
 
   -- you can reuse a shared lspconfig on_attach callback here
   -- 下面这个应该是默认打开的，但是被我注释掉了
-  -- 自动保存时进行格式化
+  -- 自动保存时进行格式化（这个是回调函数）
   on_attach = function(client)
       -- NOTE: 如果想要禁止某种语言在save时format，可以添加判定
       -- if client.name == "xxx" then
