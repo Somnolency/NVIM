@@ -48,8 +48,6 @@ M.mason = {
     "clang-format",
     "clangd",
     "cmake-language-server",
-    "cmakelang",
-    "cpplint",
 
   },
 }
