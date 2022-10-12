@@ -40,7 +40,7 @@ lspconfig["clangd"].setup {
           "--clang-tidy",
     },
     filetypes = { "c", "cpp", "objc", "objcpp" },
-    single_file_support = true,
+    single_file_support = false,
 }
 
 -- -- cmake配置
