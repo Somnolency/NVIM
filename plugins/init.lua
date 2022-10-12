@@ -1,4 +1,5 @@
 local M = {}
+-- 注意需要先安装overrides中被require的库
 local overrides = require "custom.plugins.overrides"
 M = {
     -- LSP UI 美化
@@ -25,9 +26,6 @@ M = {
 
     -- 键位绑定器 默认安装了
     ["folke/which-key.nvim"] = {
-        -- config = function()
-        --     require("custom.plugins.configs.which-key")
-        -- end
         disable = false,
     },
 
@@ -68,11 +66,11 @@ M = {
     },
 
     -- 搜索时显示条目
-    ["kevinhwang91/nvim-hlslens"] = {
-        config = function()
-            require("custom.plugins.configs.nvim-hlslens")
-        end
-    },
+    -- ["kevinhwang91/nvim-hlslens"] = {
+    --     config = function()
+    --         require("custom.plugins.configs.nvim-hlslens")
+    --     end
+    -- },
 
     -- 自动保存(可能与插件实时生效有干扰)
 --     ["Pocco81/AutoSave.nvim"] = {
@@ -99,7 +97,6 @@ M = {
     ["williamboman/mason.nvim"] = {
         override_options = overrides.mason
     },
-    
     -- Override plugin config if it has a module called
     -- If you wish to call a module, which is 'cmp' in this case
     -- 代码补全
@@ -175,7 +172,7 @@ M = {
     -- Debugger 插件
     ["ravenxrz/DAPInstall.nvim"] = {},
     ["mfussenegger/nvim-dap"] = {
-        after = "nvim-cmp",
+        cmd = "dap",
         config = function()
             require("custom.plugins.dap").setup()
          end,
@@ -196,7 +193,7 @@ M = {
     },
     ["jbyuki/one-small-step-for-vimkind"] = {module = "osv",},
     ["sakhnik/nvim-gdb"] = {
-        after = "nvim-dap-ui",
+        cmd = "dap",
         run = "./install.sh",
         config = function()
             require("custom.plugins.dap.nvim-gdb")
