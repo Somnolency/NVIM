@@ -53,10 +53,19 @@ M = {
     },
 
     -- Lsp 相关设置
+    ["p00f/clangd_extensions.nvim"] = {},
     ["neovim/nvim-lspconfig"] = {
         config = function()
+          -- 为了解决clangd与null-ls编码问题不一致，改变clangd的编码
+        --   local capabilities = require("plugins.configs.lspconfig").capabilities
+        --   capabilities.offsetEncoding = { "utf-16" }
           require "plugins.configs.lspconfig"
           require "custom.plugins.lspconfig"
+        --   require("clangd_extensions").setup {
+        --     server = {
+        --         capabilities = capabilities,
+        --     }
+        --   }
         end,
     },
 
