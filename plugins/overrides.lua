@@ -42,10 +42,8 @@ M.mason = {
     "css-lsp",
     "html-lsp",
     "typescript-language-server",
-    "deno",
 
     -- c/c++ stuff
-    "clang-format",
     "clangd",
     "cmake-language-server",
 
@@ -69,24 +67,50 @@ M.nvimtree = {
 }
 
 -- nvim-cmp 补全设置
+local kind_icons = {
+  Text = "",
+  Method = "",
+  Function = "",
+  Constructor = "",
+  Field = "",
+  Variable = " ",
+  Class = "ﴯ",
+  Interface = "",
+  Module = "",
+  Property = "ﰠ",
+  Unit = "",
+  Value = "",
+  Enum = "",
+  Keyword = "",
+  Snippet = "",
+  Color = "",
+  File = "",
+  Reference = "",
+  Folder = "",
+  EnumMember = "",
+  Constant = "",
+  Struct = "",
+  Event = "",
+  Operator = "",
+  TypeParameter = ""
+}
+
 M.cmp = {
   formatting = {
-    format = require('lspkind').cmp_format({
-      with_text = true,
-      maxwidth = 50,
-      -- mode = "symbol_text",
-      menu = ({
+    format = function(entry, vim_item)
+      -- Kind icons
+      vim_item.kind = string.format('%s %s', kind_icons[vim_item.kind], vim_item.kind) -- This concatonates the icons with the name of the item kind
+      -- Source
+      vim_item.menu = ({
         buffer = "[Buffer]",
         nvim_lsp = "[LSP]",
         luasnip = "[LuaSnip]",
         nvim_lua = "[Lua]",
-        latex_symbols = "[Latex]",
-      }),
-      before = function(entry, vim_item)
-        vim_item.menu = "[" .. string.upper(entry.source.name) .. "]"
-        return vim_item
-      end,
-    }),
+        latex_symbols = "[LaTeX]",
+      })[entry.source.name]
+      return vim_item
+    end
+
   }
 
 }
