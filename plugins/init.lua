@@ -44,9 +44,9 @@ M = {
     -- },
 
     -- Cmake集成到Neovim
-    ["nvim-lua/plenary.nvim"] = {},
     ["Shatur/neovim-cmake"] = {
-        after = "nvim-dap",
+        -- after = "nvim-dap",
+        require = {"nvim-lua/plenary.nvim"},
         config = function()
             require("custom.plugins.configs.neovim-cmake")
         end,
