@@ -45,7 +45,6 @@ M = {
 
     -- Cmake集成到Neovim
     ["Shatur/neovim-cmake"] = {
-        -- after = "nvim-dap",
         require = {"nvim-lua/plenary.nvim"},
         config = function()
             require("custom.plugins.configs.neovim-cmake")
@@ -53,7 +52,6 @@ M = {
     },
 
     -- Lsp 相关设置
-    ["p00f/clangd_extensions.nvim"] = {},
     ["neovim/nvim-lspconfig"] = {
         config = function()
           -- 为了解决clangd与null-ls编码问题不一致，改变clangd的编码
@@ -67,6 +65,7 @@ M = {
         --     }
         --   }
         end,
+        require = {"p00f/clangd_extensions.nvim"},
     },
 
     -- 提供代码高亮, 缩进以及选择
@@ -94,8 +93,6 @@ M = {
            require("custom.plugins.configs.null-ls")
         end,
    },
-    -- Install plugin
-    ["Pocco81/TrueZen.nvim"] = {},
 
     -- Override plugin definition options
     ["goolord/alpha-nvim"] = {
@@ -110,7 +107,6 @@ M = {
     -- If you wish to call a module, which is 'cmp' in this case
     -- 代码补全
     ["hrsh7th/cmp-cmdline"] = { after = "cmp-path" },
-    ["onsails/lspkind.nvim"] = {},
     ["hrsh7th/nvim-cmp"] = {
         override_options = function()
             local cmp = require "cmp"
@@ -179,23 +175,28 @@ M = {
 
 
     -- Debugger 插件
-    ["ravenxrz/DAPInstall.nvim"] = {},
-    ["mfussenegger/nvim-dap"] = {
-        cmd = "dap",
+    ["ravenxrz/DAPInstall.nvim"] = {
         config = function()
-            require("custom.plugins.dap").setup()
+            require("dap-install").setup(
+                {installation_path = vim.fn.stdpath("data") .. "/dapinstall/",})
+        end
+    },
+    ["mfussenegger/nvim-dap"] = {
+        -- after = "nvim-dap-ui",
+        config = function()
+            require("custom.plugins.dap.dap-cpp")
+            -- require("custom.plugins.dap").setup()
          end,
     },
     ["theHamsta/nvim-dap-virtual-text"] = {
         after = "nvim-dap",
         config = function()
-            require("nvim-dap-virtual-text").setup {
-                require("custom.plugins.dap.dap-virtual-text").set
-            }
+            require("nvim-dap-virtual-text").setup(
+                require("custom.plugins.dap.dap-virtual-text").set)
          end,
     },
     ["rcarriga/nvim-dap-ui"] = {
-        after = "nvim-dap",
+    --     after = "nvim-cmp",
         config = function()
             require("custom.plugins.dap.dap-ui")
          end,
@@ -211,6 +212,7 @@ M = {
 
     -- 函数签名
     ["ray-x/lsp_signature.nvim"] = {
+        after = "nvim-cmp",
         config = function()
             require("custom.plugins.configs.lsp_signature")
         end,
