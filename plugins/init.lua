@@ -119,7 +119,9 @@ M = {
                     completion = {
                       col_offset = -3,
                       side_padding = 0,
+                      cmp.config.window.bordered(),
                     },
+                    documentation = cmp.config.window.bordered(),
                 },
 
                 cmp.setup.filetype('gitcommit', {
@@ -185,11 +187,11 @@ M = {
         -- after = "nvim-dap-ui",
         config = function()
             require("custom.plugins.dap.dap-cpp")
-            -- require("custom.plugins.dap").setup()
+            require("custom.plugins.dap").setup()
          end,
     },
     ["theHamsta/nvim-dap-virtual-text"] = {
-        after = "nvim-dap",
+        -- after = "nvim-dap",
         config = function()
             require("nvim-dap-virtual-text").setup(
                 require("custom.plugins.dap.dap-virtual-text").set)
@@ -203,7 +205,6 @@ M = {
     },
     ["jbyuki/one-small-step-for-vimkind"] = {module = "osv",},
     ["sakhnik/nvim-gdb"] = {
-        cmd = "dap",
         run = "./install.sh",
         config = function()
             require("custom.plugins.dap.nvim-gdb")
