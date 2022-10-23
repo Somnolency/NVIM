@@ -3,9 +3,14 @@ local M = {}
 local overrides = require "custom.plugins.overrides"
 M = {
     -- LSP UI 美化
-   ["tami5/lspsaga.nvim"] = {
+   ["glepnir/lspsaga.nvim"] = {
     config = function()
-        require("custom.plugins.configs.lspsaga")
+      local saga = require('lspsaga')
+      saga.init_lsp_saga({
+        symbol_in_winbar = {
+          in_custom = true
+        }
+      })
     end
     },
 
