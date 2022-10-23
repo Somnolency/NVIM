@@ -123,6 +123,7 @@ M = {
                     },
                     documentation = cmp.config.window.bordered(),
                 },
+                completion = {keyword_length = 3,},
 
                 cmp.setup.filetype('gitcommit', {
                     sources = cmp.config.sources({
