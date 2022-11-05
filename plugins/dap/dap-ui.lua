@@ -34,7 +34,7 @@ dapui.setup ({
       elements = { "repl" },
     size = 5,
     position = "bottom", -- Can be "left", "right", "top", "bottom"
-    }, 
+    },
   },
 
   floating = {

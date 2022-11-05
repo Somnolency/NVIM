@@ -48,3 +48,8 @@ lspconfig["cmake"].setup {
   },
   -- single_file_support = true,
 }
+lspconfig["pyright"].setup{
+  on_attach = on_attach,
+  capabilities = capabilities,
+
+}

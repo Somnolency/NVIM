@@ -37,7 +37,7 @@ local function configure_exts()
   -- require("nvim-dap-virtual-text").setup {
   --   commented = true,
   -- }
-  
+
   local debug_open = function()
     dapui.open()
     vim.api.nvim_command("DapVirtualTextEnable")
@@ -73,8 +73,8 @@ local function configure_debuggers()
   -- load from json file
   require('dap.ext.vscode').load_launchjs(nil, { cppdbg = { 'cpp' } })
   -- config per launage
-
-  -- require("custom.plugins.dap.dap-cpp")
+  require("custom.plugins.dap.dap-python")
+  require("custom.plugins.dap.dap-cpp")
   -- require("custom.plugins.dap.dap-lua")
 
 end

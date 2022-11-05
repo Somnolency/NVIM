@@ -1,8 +1,8 @@
 local dap = require"dap"
 
 dap.configurations.lua = {
-  { 
-    type = 'nlua', 
+  {
+    type = 'nlua',
     request = 'attach',
     name = "Attach to running Neovim instance",
     cwd = '${workspaceFolder}',
