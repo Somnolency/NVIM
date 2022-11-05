@@ -44,6 +44,8 @@ M.disabled = {
 M.user_general = {
   n = {
     [";"] = { ":", "enter cmdline", opts = { nowait = true } },
+    ["<leader>q"] = {":q!<cr>", "强制退出", opts = {nowait = true}},
+    ["<leader>w"] = {":w<cr>", "保存",opts = {nowait = true}},
   },
 
   i = {
