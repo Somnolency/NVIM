@@ -53,3 +53,6 @@ lspconfig["pyright"].setup{
   capabilities = capabilities,
 
 }
+lspconfig['stylelint_lsp'].setup{
+
+}
