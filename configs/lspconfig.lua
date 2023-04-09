@@ -7,10 +7,13 @@ local lspconfig = require "lspconfig"
 local servers = { "html", "cssls", "tsserver", "clangd" }
 
 for _, lsp in ipairs(servers) do
+  -- 为了解决clangd与null-ls的编码不一致，改变clangd编码
+  capabilities.offsetEncoding =  {"utf-16" }
   lspconfig[lsp].setup {
     on_attach = on_attach,
     capabilities = capabilities,
-  }
+    -- 为了解决clangd与null-ls的编码不一致，改变clangd编码
+    }
 end
 
 -- 
